@@ -27,10 +27,10 @@ Also in the same file you can change values for following variables:
 and `Passwordauthentication no` to allow only key-based authentication.  
 b. Make sure to configure the Lightsail firewall to allow it.  
 Eanble ports 2200, 80, 123 in Amazon Lightsail Firewall settings.    
-**Referrences** :
-(1) [Disable SSH root login](https://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/)
-(2) [SSH Disable password authentication](https://stackoverflow.com/questions/20898384/ssh-disable-password-authentication)
-(3) [Firewall settings for Amazon Lightsail instance](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/) 
+**Referrences** :  
+(1) [Disable SSH root login](https://www.howtogeek.com/howto/linux/security-tip-disable-root-ssh-login-on-linux/)  
+(2) [SSH Disable password authentication](https://stackoverflow.com/questions/20898384/ssh-disable-password-authentication)  
+(3) [Firewall settings for Amazon Lightsail instance](https://aws.amazon.com/premiumsupport/knowledge-center/connect-http-https-ec2/)   
 
 5. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).    
 Use the following commands:    
@@ -72,9 +72,9 @@ After generating a key switch to *grader* user and do the followng:
 Use `chmod 700 .ssh` and `chmod 644 .ssh/authorized_keys` for user priviledges.  
 On client machine you can use following to logged in with *grader*  
 `ssh grader@52.15.106.147 -p 2200 -i ~/.ssh/grader_rsa`  
-**Referrences** :
-(1) [How to set up SSH keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
-(2) [Linux Chmod Commands](https://www.linuxtopia.org/online_books/introduction_to_linux/linux_The_chmod_command.html)
+**Referrences** :  
+(1) [How to set up SSH keys](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)  
+(2) [Linux Chmod Commands](https://www.linuxtopia.org/online_books/introduction_to_linux/linux_The_chmod_command.html)  
 
 9. Configure the local timezone to UTC.  
 Use command `sudo timedatectl set-timezone Etc/UTC`  
@@ -107,8 +107,8 @@ d. After these setting, it is reccomended to restart the *apache server*
 Use command `Sudo service apache2 restart`  
 You can check status for apache2 using this command `sudo systemctl status apache2`  
 **Referrences** :  
-(1) [Install postgresql on Ubuntu and create role](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)  
-(2) [Postgres User Roles]http://arnulf.us/PostgreSQL_Permissions_and_Roles  
+(1) [Install postgresql on Ubuntu and create role](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)    
+(2) [Postgres User Roles](http://arnulf.us/PostgreSQL_Permissions_and_Roles)  
 (2) [Secure postgreql](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-against-automated-attacks)  
 (3) [Apache2 server start,stop,restart](https://www.cyberciti.biz/faq/star-stop-restart-apache2-webserver/)  
 
@@ -170,27 +170,27 @@ Issue the following command in your terminal
 `sudo nano /etc/apache2/sites-available/catalog`  
 NOTE: Newer versions of Ubuntu (13.10+) require a ".conf" extension for VirtualHost files -- run the following command instead  
 `sudo nano /etc/apache2/sites-available/catalog.conf`  
-Add the following lines of code to the file to configure the virtual host. Be sure to change the ServerName to your domain or cloud server's IP address:  
-`<VirtualHost *:80>  
-		ServerName mywebsite.com  
-		ServerAdmin admin@mywebsite.com  
-		WSGIScriptAlias / /var/www/catalog/catalog.wsgi  
-		<Directory /var/www/catalog/catalog/>  
-			Order allow,deny  
-			Allow from all  
-		</Directory>  
-		Alias /static /var/www/catalog/catalog/static  
-		<Directory /var/www/catalog/catalog/static/>  
-			Order allow,deny  
-			Allow from all  
-		</Directory>  
-		ErrorLog ${APACHE_LOG_DIR}/error.log  
-		LogLevel warn  
-		CustomLog ${APACHE_LOG_DIR}/access.log combined  
-</VirtualHost>`    
+Add the following lines of code to the file to configure the virtual host. Be sure to change the ServerName to your domain or cloud server's IP address:    
+`<VirtualHost *:80>    
+		ServerName mywebsite.com    
+		ServerAdmin admin@mywebsite.com    
+		WSGIScriptAlias / /var/www/catalog/catalog.wsgi    
+		<Directory /var/www/catalog/catalog/>    
+			Order allow,deny    
+			Allow from all    
+		</Directory>    
+		Alias /static /var/www/catalog/catalog/static    
+		<Directory /var/www/catalog/catalog/static/>    
+			Order allow,deny    
+			Allow from all    
+		</Directory>    
+		ErrorLog ${APACHE_LOG_DIR}/error.log    
+		LogLevel warn    
+		CustomLog ${APACHE_LOG_DIR}/access.log combined    
+</VirtualHost>`      
 Save and close the file.  
 Get the hostname for your IP at [hcidata](http://www.hcidata.info/host2ip.cgi)
-Update host name as Server Alias in catalog.conf file.  
+Update host name as Server Alias and IP address as Server name in catalog.conf file.  
 (12) Enable the virtual host with the following command  
 `sudo a2ensite catalog`  
 (13) Create the .wsgi File  
@@ -214,8 +214,8 @@ Move the contents of the project folder to our created catalog directory
 `sudo mv -v /var/Item-Catalog/*  /var/www/catalog`  
 **Referrences** : 
 (1) [Deploy a Flask app](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)  
-(2) [Clone a git repo on Ubuntu](https://stackoverflow.com/questions/651038/how-do-you-clone-a-git-repository-into-a-specific-folder  )
-(3) [Move git directory contents to other folder](https://stackoverflow.com/questions/3900805/git-command-to-move-a-folder-inside-another)  
+(2) [Clone a git repo on Ubuntu](https://stackoverflow.com/questions/651038/how-do-you-clone-a-git-repository-into-a-specific-folder)  
+(3) [Move git directory contents to other folder](https://stackoverflow.com/questions/3900805/git-command-to-move-a-folder-inside-another)    
 (4) [hcidata to get a hostname](http://www.hcidata.info/host2ip.cgi)  
 
 14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!  
