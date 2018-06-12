@@ -8,13 +8,12 @@ This project is a baseline installation of a Linux server and prepare it to host
 3. URL for the application : http://ec2-52-15-106-147.us-east-2.compute.amazonaws.com/
 
 ### Step-By-Step Server configuration and Referrences
-1. Create a new Ubuntu Linux server instance using *Amazon Lightsail*   **Referrence** : [Amazon Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/)  
-There are full details on setting up your Lightsail instance on the next page.
+1. Create a new Ubuntu Linux server instance using *Amazon Lightsail*   **Referrence** : [Amazon Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/)    
 
 2. Follow the instructions provided to SSH into your server.  
 **Referrence** : [Get started on Lightsail step by step guidance by Udacity](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175462/lessons/3573679011239847/concepts/c4cbd3f2-9adb-45d4-8eaf-b5fc89cc606e)
 
-3. Update all currently installed packages on a server. Use the following commands.
+3. Update all currently installed packages on a server. Use the following commands.  
 `sudo apt-get update`  
 `sudo apt-get upgrade`  
 `sudo apt-get dist-upgrade`     
@@ -63,7 +62,7 @@ Use command `ssh key-gen` on client machine.
 It will ask for file to save the key value. *eg. ~/.ssh/grader_rsa*.   
 It will create few files and save the details.  
 Use `cat ~/.ssh/grader_rsa.pub` and copy these contents in order to save further.  
-After generating a key switch to *grader* user and do the followng:  
+After generating a key, switch to *grader* user and use following commands   
 *Create directory ssh if dirctory is not there*  
 `mkdir .ssh`  
 *Create and edit the authorized_keys file*
