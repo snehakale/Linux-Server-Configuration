@@ -8,7 +8,7 @@ This project is a baseline installation of a Linux server and prepare it to host
 3. URL for the application : http://ec2-52-15-106-147.us-east-2.compute.amazonaws.com/
 
 ### Step-By-Step Server configuration and Referrences
-1. Create a new Ubuntu Linux server instance using *Amazon Lightsail*   **Referrence** : [Amazon Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/)    
+1. Create a new Ubuntu Linux server instance using *Amazon Lightsail*     **Referrence** : [Amazon Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/)    
 
 2. Follow the instructions provided to SSH into your server.  
 **Referrence** : [Get started on Lightsail step by step guidance by Udacity](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175462/lessons/3573679011239847/concepts/c4cbd3f2-9adb-45d4-8eaf-b5fc89cc606e)
@@ -21,9 +21,9 @@ This project is a baseline installation of a Linux server and prepare it to host
 
 4. Change the SSH port from 22 to 2200.   
 a. Use command `Sudo nano /etc/ssh/sshd_config` to change the port number as desired.    
-Also in the same file you can change values for following variables:
+Also in the same file you can change values for following variables:  
 `Permitrootlogin no` to disable access to root login 
-and `Passwordauthentication no` to allow only key-based authentication.  
+and `Passwordauthentication no` to allow only key-based authentication.    
 b. Make sure to configure the Lightsail firewall to allow it.  
 Eanble ports 2200, 80, 123 in Amazon Lightsail Firewall settings.    
 **Referrences** :  
@@ -65,9 +65,9 @@ Use `cat ~/.ssh/grader_rsa.pub` and copy these contents in order to save further
 After generating a key, switch to *grader* user and use following commands   
 *Create directory ssh if dirctory is not there*  
 `mkdir .ssh`  
-*Create and edit the authorized_keys file*
+*Create and edit the authorized_keys file*  
 `touch .ssh/authorized_keys`  
-`nano .ssh/authorized_keys` and paste the above copied contents in it.    
+`nano .ssh/authorized_keys` and paste the above copied contents in it.      
 Use `chmod 700 .ssh` and `chmod 644 .ssh/authorized_keys` for user priviledges.  
 On client machine you can use following to logged in with *grader*  
 `ssh grader@52.15.106.147 -p 2200 -i ~/.ssh/grader_rsa`  
@@ -81,30 +81,31 @@ Use command `sudo timedatectl set-timezone Etc/UTC`
 
 10. Install and configure Apache to serve a Python mod_wsgi application.   
 For apache2 server use command `sudo apt-get install apache2`  
-If you built your project with Python 3, you will need to install the Python 3 mod_wsgi package on your server: `sudo apt-get install libapache2-mod-wsgi-py3`.  
+If you built your project with Python 3, you will need to install the Python 3 mod_wsgi package on your server  
+`sudo apt-get install libapache2-mod-wsgi-py3`.  
 
 11. Install and configure PostgreSQL  
 For postgresql use command: `sudo apt-get install postgresql`  
 a. Do not allow remote connections  
 Use command `sudo nano /etc/postgresql/9.3/main/pg_hba.conf` to edit the file.   
-Add the following contents int it, save and exit the file.
+Add the following contents int it, save and exit the file.  
 `#local   all   all   peer`   
 `local   all   all   md5`  
 b. Create a new database user named **catalog** that has limited permissions to your catalog application database.  
 Use following commands.  
 *to start editing in psql mode with postgres user*  
-`sudo -i -u postgres psql` 
-*To create a user*
-`CREATE ROLE catalog WITH LOGIN PASSWORD '*****';` 
+`sudo -i -u postgres psql`   
+*To create a user*  
+`CREATE ROLE catalog WITH LOGIN PASSWORD '*****';`   
 *To add roles to user*  
-`Alter catalog WITH CREATEDB`  
-*To list out the users and their roles*
+`Alter catalog WITH CREATEDB`    
+*To list out the users and their roles*  
 `\du`   
 Once you are done, exit the psql.  
 c. Use command `sudo service postgresql restart` to restart the postgresql  
 d. After these setting, it is reccomended to restart the *apache server*  
 Use command `Sudo service apache2 restart`  
-You can check status for apache2 using this command `sudo systemctl status apache2`  
+You can check status for apache server using this command `sudo systemctl status apache2`  
 **Referrences** :  
 (1) [Install postgresql on Ubuntu and create role](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04)    
 (2) [Postgres User Roles](http://arnulf.us/PostgreSQL_Permissions_and_Roles)  
@@ -122,7 +123,8 @@ You can oncfigure it by providing basic information such as username, email.
 Here we are using *Item-Catalog-Project* from GitHub repository.  
 a. Enable mod_wsgi.  
 Use commands `sudo apt-get install libapache2-mod-wsgi python-dev` to serve Python
-and `sudo a2enmod wsgi` to enable it.  
+and  
+`sudo a2enmod wsgi` to enable it.  
 b. Deploy Flask.  
 For that let's first create a flask appication.  
 (1) We will place our app in the **/var/www** directory.  
@@ -162,7 +164,7 @@ Give this command to install Flask inside
 Next, run the following command to test if the installation is successful and the app is running  
 `sudo python __init__.py `  
 It should display “Running on http:....” or "Running on http://127.0.0.1:5000/". If you see this message, you have successfully configured the app.  
-(10) To deactivate the environment, give the following command
+(10) To deactivate the environment, give the following command  
 `deactivate`    
 (11) Configure and Enable a New Virtual Host  
 Issue the following command in your terminal  
@@ -211,20 +213,20 @@ c. Clone the project into this flask application.
 Use command `sudo git clone https://github.com/.../Item-Catalog-Project.git /var/Item-Catalog` to clone.  
 Move the contents of the project folder to our created catalog directory   
 `sudo mv -v /var/Item-Catalog/*  /var/www/catalog`  
-**Referrences** : 
+**Referrences** :  
 (1) [Deploy a Flask app](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)  
 (2) [Clone a git repo on Ubuntu](https://stackoverflow.com/questions/651038/how-do-you-clone-a-git-repository-into-a-specific-folder)  
 (3) [Move git directory contents to other folder](https://stackoverflow.com/questions/3900805/git-command-to-move-a-folder-inside-another)    
 (4) [hcidata to get a hostname](http://www.hcidata.info/host2ip.cgi)  
 
-14. Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!  
+14. Set it up in your server so that it functions correctly when visiting your servers IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!  
 To do this make a **.htaccess** file in /var/www/catalog.  
 Paste the content - `RedirectMatch 404 /\.git` in this file and save it .  
 You can delete unwanted files in your project folder (for example - readme, vagrant folder etc).  
 **Referrence** :  [Prevent apache from serving the git directory](https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory)
 
 15. Install other required packagaes to run this project.  
-(1)`sudo apt-get install python-pip`  
+(1) `sudo apt-get install python-pip`  
 (2) `pip install httplib2`  
 (3) `pip install requests`  
 (4) `sudo pip install sqlalchemy`  
@@ -257,7 +259,7 @@ Update the valid OAuth redirect URIs with our hostname and url.
 Update the fb_client_secrets.json file from terminal also.    
 Make sure for the updated values in both the client_secrets.json and fb_client_secrets.json files.  
 Remove unwanted files from project folder. *eg. vagrant, readme file*  
-Restart Apache server : `sudo service apache2 restart` 
+Restart Apache server : `sudo service apache2 restart`   
 (4) You can enter URL from browser to run the project.  
 **Referrences** :   
 (1) [Remove Files in Ubuntu](https://www.ibm.com/support/knowledgecenter/en/ssw_aix_72/com.ibm.aix.osdevice/HT_cmd_del_files.htm)  
