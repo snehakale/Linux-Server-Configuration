@@ -268,6 +268,8 @@ Restart Apache server : `sudo service apache2 restart`
 (4) [Udacity Discussion Forums](https://discussions.udacity.com/search?q=linux%20server%20configuration%20google%20oauth%20redirect%20URI)  
 (5) [Raw IP address for Google OAuth](https://stackoverflow.com/questions/14238665/can-a-public-ip-address-be-used-as-google-oauth-redirect-uri)
 
+### Author 
+Sneha Kale
 
 
 
