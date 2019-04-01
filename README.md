@@ -6,6 +6,7 @@ This project is a baseline installation of a Linux server and prepare it to host
 1. IP Address : 52.15.106.147
 2. SSH Port : 2200
 3. URL for the application : http://ec2-52-15-106-147.us-east-2.compute.amazonaws.com/
+(This URL may not work right now because of server settings)
 
 ### Step-By-Step Server configuration and Referrences
 1. Create a new Ubuntu Linux server instance using *Amazon Lightsail*     **Referrence** : [Amazon Lightsail](https://lightsail.aws.amazon.com/ls/webapp/home/)    
@@ -114,7 +115,7 @@ You can check status for apache server using this command `sudo systemctl status
 
 12. Install git.  
 Use command `Sudo apt-get install git` to install git on Ubuntu  
-You can oncfigure it by providing basic information such as username, email.  
+You can configure it by providing basic information such as username, email.  
 `git config --global user.name "Example User"`  
 `git config --global user.email email@example.com`  
 **Referrence** : [Git Install and basic setup](https://www.digitalocean.com/community/tutorials/how-to-install-git-on-ubuntu-14-04)
